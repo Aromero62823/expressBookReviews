@@ -1,0 +1,2 @@
+curl -X DELETE http://localhost:5000/customer/auth/review/1 -H "Authorization: Bearer YOUR_TOKEN" -H "Accept: application/json"
+{"message":"Review for Angel has been deleted!"}

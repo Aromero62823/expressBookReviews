@@ -61,7 +61,12 @@ public_users.get('/author/:author',function (req, res) {
   const ret_books = Object.values(books).filter(book => (
     book.author == req.params.author
   ))
-  return res.status(200).send(ret_books);
+
+  if (ret_books) {
+      return res.status(200).send(ret_books);
+  } else {
+    return res.status(500).json({message: "Author not found!"})
+  }
 });
 
 public_users.get('/author/:author/book', async (req, res) => {
