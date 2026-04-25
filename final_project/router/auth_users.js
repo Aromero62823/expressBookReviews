@@ -25,12 +25,12 @@ regd_users.post("/login", (req,res) => {
     if(authenticatedUser(username, password)) {
       const token = jwt.sign({"username":username}, "123456789", {expiresIn: '1hr'});
       req.session.authentication={token, username}
-      res.status(300).send('User Logged In!')
+      res.status(200).send('User Logged In!')
     } else {
-      res.status(300).send(`Error with Username/Password!`)
+      res.status(500).send(`Error with Username/Password!`)
     }
   } else { 
-      res.status(300).send('Username or Password not entered!')
+      res.status(500).send('Username or Password not entered!')
   }
 });
 
@@ -44,7 +44,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
 
 regd_users.delete("/auth/review/:isbn", (req, res) => {
   delete books[req.params.isbn].reviews[req.user.username]
-  return res.status(300).json({message:`Review for ${req.user.username} has been deleted!`});
+  return res.status(200).json({message:`Review for ${req.user.username} has been deleted!`});
 });
 
 
